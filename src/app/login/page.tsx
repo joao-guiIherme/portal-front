@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Shield } from 'lucide-react';
-import { Login } from '@/services/api';
+import { Login } from '@/services/api'; 
 
 export default function LoginPage() {
   const router = useRouter();
@@ -24,31 +24,16 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/users/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: formData.email,  // se o backend espera "email"
-          password: formData.senha  // ou "senha", depende da sua API
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Usuário ou senha inválidos');
-      }
-
-      const data = await Login(formData); // Chama a função Login com o token vazio
-      response.json();
+      const data = await Login(formData); // Usa o importado Login()
 
       localStorage.setItem('token', data.token);
 
       // Redireciona para o app
       router.push('/');
     } catch (err: any) {
-      setErro(err.message);
+      setErro(err.message || 'Erro ao fazer login');
     }
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-emerald-100 relative overflow-hidden flex items-center justify-center">
       {}
