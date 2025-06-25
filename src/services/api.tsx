@@ -1,5 +1,5 @@
 
-const API_BASE_URL = 'http://localhost:1602'; 
+const API_BASE_URL = 'https://projeto05-backend.onrender.com'; 
 const API_PORTAL = 'https://projeto05-portal-backend.onrender.com'; 
 
 type LoginForm = {
