@@ -7,10 +7,6 @@ type LoginForm = {
   senha: string;
 };
 
-export type RoleName =
-  | 'ROLE_SUPER_ADMIN'
-  | 'ROLE_ADMIN'
-  | 'ROLE_READER';
 
 type RegisterForm = {
   email: string;
@@ -18,7 +14,7 @@ type RegisterForm = {
   password: string;
   cnpj: string;
   companyName: string;
-  role: RoleName[];
+  role: string[];
 };
 
 
