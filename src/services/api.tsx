@@ -4,7 +4,7 @@ const API_PORTAL = 'https://projeto05-portal-backend.onrender.com';
 
 type LoginForm = {
   email: string;
-  password: string;
+  senha: string;
 };
 
 export type RoleName =
@@ -89,7 +89,7 @@ export const Login = async (formData: LoginForm) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: formData.email,
-          password: formData.password 
+          password: formData.senha  
         })
       });
   if (!response.ok) {
