@@ -1,6 +1,27 @@
 
 const API_BASE_URL = 'http://localhost:1602'; 
 const API_PORTAL = 'https://projeto05-portal-backend.onrender.com'; 
+
+type LoginForm = {
+  email: string;
+  password: string;
+};
+
+export type RoleName =
+  | 'ROLE_SUPER_ADMIN'
+  | 'ROLE_ADMIN'
+  | 'ROLE_READER';
+
+type RegisterForm = {
+  email: string;
+  username: string;
+  password: string;
+  cnpj: string;
+  companyName: string;
+  role: RoleName[];
+};
+
+
 export const fetchSafetyPlaces = async (token: string) => {
   const response = await fetch(`${API_BASE_URL}/safetyPlace/get-cnpj`, {
     headers: {
@@ -46,7 +67,7 @@ export const getUserById = async (token: string) => {
   return response.json();
 };
 
-export const Register = async (token: string, formData: any) => {
+export const Register = async (token: string, formData: RegisterForm) => {
   const response = await fetch(`${API_PORTAL}/users/register`, {
     method: 'POST',
     headers: {
@@ -62,7 +83,7 @@ export const Register = async (token: string, formData: any) => {
   return response.json();
 }
 
-export const Login = async (formData: any) => {
+export const Login = async (formData: LoginForm) => {
   const response = await fetch(`${API_PORTAL}/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
