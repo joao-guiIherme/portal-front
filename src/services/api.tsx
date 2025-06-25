@@ -1,6 +1,6 @@
-//const API_BASE_URL = 'https://projeto05-8zfn.onrender.com'; // ou a URL do seu backend
+
 const API_BASE_URL = 'http://localhost:1602'; 
-const API_PORTAL = 'http://localhost:8080'; // ou a URL do seu backend
+const API_PORTAL = 'https://projeto05-portal-backend.onrender.com'; 
 export const fetchSafetyPlaces = async (token: string) => {
   const response = await fetch(`${API_BASE_URL}/safetyPlace/get-cnpj`, {
     headers: {
