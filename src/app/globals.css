@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Adicione estas variáveis ao seu :root */
+:root {
+  --sidebar-width: 16rem;
+  --sidebar-width-icon: 3rem;
+  --sidebar-width-mobile: 18rem;
+}
+
+/* Estilos para o modo colapsado */
+.group-data-[collapsible=icon] [data-slot="sidebar-group-label"],
+.group-data-[collapsible=icon] [data-slot="sidebar-menu"] span {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.group-data-[collapsible=icon] [data-slot="sidebar-menu-button"] {
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.group-data-[collapsible=icon] [data-slot="sidebar-menu-button"] > span {
+  display: none;
+} 
+
+
+body {
+  background-image: url('/Home-portal.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
