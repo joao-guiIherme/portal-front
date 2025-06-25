@@ -6,7 +6,7 @@ import Map, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { searchCoordinate } from '@/services/map';
 import { fetchSafetyPlaces, fetchUser } from '@/services/api'; 
-import type { SafetyPlace, User } from '@/app/types/model';
+import type { SafetyPlace, UserModel } from '@/app/types/model';
 
 const MAPBOX_TOKEN = "pk.eyJ1IjoiamdhbHZlczA0IiwiYSI6ImNtYzNweTI0eDA3ZGgya29pazA1dTRqaDUifQ.cgTmHxlFfRtlCDurPEAfKQ";
 
@@ -18,7 +18,7 @@ const MapSection: React.FC = () => {
     zoom: 10,
   });
   const [safetyPlaces, setSafetyPlaces] = useState<SafetyPlace[]>([]); 
-  const [users, setUsers] = useState<User[]>([]);  
+  const [users, setUsers] = useState<UserModel[]>([]);  
   const token = localStorage.getItem('token'); 
 
   useEffect(() => {
