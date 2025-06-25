@@ -89,7 +89,7 @@ export const Login = async (formData: LoginForm) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: formData.email,
-          password: formData.senha  
+          password: formData.password 
         })
       });
   if (!response.ok) {
