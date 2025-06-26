@@ -24,28 +24,13 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/users/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: formData.email,  // se o backend espera "email"
-          password: formData.senha  // ou "senha", depende da sua API
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Usuário ou senha inválidos');
-      }
-
-      const data = await Login(formData); // Chama a função Login com o token vazio
-      response.json();
+      const data = await Login(formData);
 
       localStorage.setItem('token', data.token);
 
-      // Redireciona para o app
       router.push('/');
     } catch (err: any) {
-      setErro(err.message);
+      setErro(err.message || 'Erro ao fazer login');
     }
   };
 
