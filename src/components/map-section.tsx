@@ -12,10 +12,10 @@ const MAPBOX_TOKEN = "pk.eyJ1IjoiamdhbHZlczA0IiwiYSI6ImNtYzNweTI0eDA3ZGgya29pazA
 
 const MapSection: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('Aracaju');
-  const [viewport, setViewport] = useState({
+  const [viewState, setViewState] = useState({
     latitude: -10.9432,
     longitude: -37.0731,
-    zoom: 10,
+    zoom: 11,
   });
   const [safetyPlaces, setSafetyPlaces] = useState<SafetyPlace[]>([]); 
   const [users, setUsers] = useState<UserModel[]>([]);  
@@ -60,7 +60,7 @@ const MapSection: React.FC = () => {
     const lat = local.location?.lat;
     const lng = local.location?.lng;
     if (typeof lat === 'number' && typeof lng === 'number') {
-      const distance = Distance(viewport.latitude, viewport.longitude, lat, lng);
+      const distance = Distance(viewState.latitude, viewState.longitude, lat, lng);
       return distance <= 20;
     }
     return false;
@@ -74,7 +74,7 @@ const MapSection: React.FC = () => {
       const lat = place.location?.lat;
       const lng = place.location?.lng;
       if (typeof lat === 'number' && typeof lng === 'number') {
-        const distance = Distance(viewport.latitude, viewport.longitude, lat, lng);
+        const distance = Distance(viewState.latitude, viewState.longitude, lat, lng);
         return distance <= 20;
       }
       return false;
@@ -100,7 +100,7 @@ const MapSection: React.FC = () => {
               if (value.length > 3) {
                 const coords = await searchCoordinate(value);
                 if (coords) {
-                  setViewport(prev => ({
+                  setViewState(prev => ({
                     ...prev,
                     latitude: coords.lat,
                     longitude: coords.lng,
@@ -120,17 +120,11 @@ const MapSection: React.FC = () => {
           <div className="h-80 rounded-lg overflow-hidden">
             <Map
               mapboxAccessToken={MAPBOX_TOKEN}
-              latitude={viewport.latitude}
-              longitude={viewport.longitude}
-              zoom={viewport.zoom}
+              {...viewState}
+              onMove={evt => setViewState(evt.viewState)}
               mapStyle="mapbox://styles/mapbox/streets-v11"
               style={{ width: '100%', height: '100%' }}
             >
-              <Marker latitude={viewport.latitude} longitude={viewport.longitude}>
-                <div className="bg-[#48b281] w-6 h-6 rounded-full border-4 border-white shadow-lg animate-bounce relative">
-                  <MapPin className="w-4 h-4 text-white absolute top-0.5 left-0.5" />
-                </div>
-              </Marker>
 
               {safetyPlaces
                 .filter(local => typeof local.location?.lat === 'number' && typeof local.location?.lng === 'number')
