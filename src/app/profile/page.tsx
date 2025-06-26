@@ -217,7 +217,7 @@ function App() {
         <div className="w-full max-w-4xl">
           <div className="rounded-2xl shadow-xl overflow-hidden bg-white">
             {/* Profile Header Section */}
-            <div className="p-8 bg-gradient-to-br from-[#109859] to-[#109859]/90">
+            <div className="p-8 bg-gradient-to-r from-green-600 via-green-700 to-emerald-700">
               <div className="mb-6">
                 <h2 className="text-2xl font-semibold text-white mb-1">Perfil de Usuário</h2>
                 <p className="text-white/80">Gerencie suas informações pessoais</p>

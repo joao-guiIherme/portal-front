@@ -26,7 +26,7 @@ export function SafetyPlaceCard({ safetyPlace, onClick }: SafetyPlaceCardProps) 
 
   return (
     <Card 
-      className="cursor-pointer bg-white rounded-xl border-green-900 transition-all duration-300 shadow-lg hover:shadow-xl border-2 transform hover:-translate-y-0.5"
+      className="cursor-pointer bg-white rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl border-0 transform hover:-translate-y-0.5"
       onClick={onClick}
     >
       <CardHeader className="pb-3">
