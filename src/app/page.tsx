@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Users, MapPin, Wifi, Navigation, BarChart3 } from 'lucide-react';
+import { Users, MapPin, Wifi, Navigation, BarChart3, Loader2 } from 'lucide-react';
 import DashboardCard from "@/components/dashboard-card";
 import InfoCard, { InfoItem } from "@/components/info-card";
 import MapSection from "@/components/map-section";
@@ -55,7 +55,14 @@ function Home() {
   }, [router]);
   
 
-  if (loading) return <div>Carregando...</div>;
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="flex flex-col items-center gap-4">
+            <Loader2 className="w-8 h-8 animate-spin text-[#109859]" />
+            <p className="text-gray-600">Carregando...</p>
+        </div>
+    </div>
+  )
   if (error) return <div>Erro: {error}</div>;
 
   return (

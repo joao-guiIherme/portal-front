@@ -6,7 +6,7 @@ import { SafetyPlaceModal } from '@/components/safety-place-modal';
 import { AuthorizationDisplay } from '@/components/authDisplay';
 import { SafetyPlace, UserModel, ClientGroup } from '@/app/types/model';
 import { fetchSafetyPlaces, findUserId } from '@/services/api';
-import { Shield, Users } from 'lucide-react';
+import { Shield, Users, Loader2 } from 'lucide-react';
 
 function App() {
     const [clientGroups, setClientGroups] = useState<ClientGroup[]>([]);
@@ -96,13 +96,10 @@ function App() {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
-                <div className="text-center">
-                    <div className="relative mb-8">
-                        <div className="absolute inset-0 bg-green-200 rounded-full animate-ping opacity-75"></div>
-                    </div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-3">Carregando locais seguros...</h2>
-                    <p className="text-gray-600 max-w-md mx-auto">Aguarde enquanto buscamos e organizamos todos os seus dados de segurança.</p>
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <div className="flex flex-col items-center gap-4">
+                    <Loader2 className="w-8 h-8 animate-spin text-[#109859]" />
+                    <p className="text-gray-600">Carregando...</p>
                 </div>
             </div>
         );
@@ -119,7 +116,7 @@ function App() {
                     <p className="text-gray-600 mb-6 leading-relaxed">{error}</p>
                     <button
                         onClick={() => window.location.reload()}
-                        className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-6 py-3 rounded-xl transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                        className="bg-gradient-to-r cursor-pointer from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-6 py-3 rounded-xl transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                     >
                         Tentar novamente
                     </button>
